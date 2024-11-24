@@ -14,3 +14,18 @@ start server
     npm start
 
 # FrontEnd
+change directory
+
+    cd frontend
+install dependencies
+
+    npm install -y 
+start server
+
+    ng serve
+
+
+
+## Authors
+
+- [@carlosguinovart](https://www.github.com/carlosguinovart)
