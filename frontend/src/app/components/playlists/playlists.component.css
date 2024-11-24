@@ -1,0 +1,42 @@
+/* General styles for the modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal.show {
+    display: flex;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
+    position: relative; /* Esto es importante para posicionar elementos absolutos dentro */
+  }
+  
+  /* Close button styles */
+  .close {
+    position: absolute; /* Para posicionarlo dentro del cuadro */
+    top: 10px; /* Ajusta según tus preferencias */
+    right: 10px; /* Ajusta según tus preferencias */
+    font-size: 20px; /* Tamaño del icono */
+    cursor: pointer;
+    color: black; /* Color del icono */
+    font-weight: bold;
+  }
+  
+  .close:hover {
+    color: red; /* Cambiar el color al pasar el cursor */
+  }
+  
