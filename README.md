@@ -22,8 +22,15 @@ install dependencies
     npm install -y 
 start server
 
-    ng serve
+    ng serve /or/ npm start 
 
+Will ask yoy if you want to sahare data w/ google like:
+
+    Would you like to share pseudonymous usage data about this project with the Angular Team
+    at Google under Google's Privacy Policy at https://policies.google.com/privacy. For more
+    details and how to change this setting, see https://angular.io/analytics.
+
+we recommend to not share
 
 
 ## Authors
