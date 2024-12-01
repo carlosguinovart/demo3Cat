@@ -1,13 +1,14 @@
-<div class="modal">
+<div class="modal" (click)="onOverlayClick($event)">
   <div class="modal-content">
-    <h2>{{ playlist?.name }}</h2>
+    <h2><strong>{{ playlist?.name }}</strong></h2>
     <ul>
       <li *ngFor="let video of playlist?.videos">
+        <img [src]="video.image" alt="{{ video.name }}" style="width: 150px; height: auto;" />
         <strong>{{ video.name }}</strong> ({{ video.type }})
         <p>{{ video.description }}</p>
-        <a [href]="video.link" target="_blank">Ver más</a>
+        <a [href]="video.link" target="_blank">Veure més</a>
       </li>
     </ul>
-    <button class="close-btn" (click)="closeModal()">Cerrar</button>
+    <button class="close-btn" (click)="closeModal()">Tancar</button>
   </div>
 </div>

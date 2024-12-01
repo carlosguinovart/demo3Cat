@@ -12,4 +12,13 @@ export class PlaylistDialogComponent {
   closeModal(): void {
     this.close.emit();
   }
+
+  onOverlayClick(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+
+    // Verifica si el clic fue fuera del contenido del modal
+    if (target.classList.contains('modal')) {
+      this.closeModal();
+    }
+  }
 }
