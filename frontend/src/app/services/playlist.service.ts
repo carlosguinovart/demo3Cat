@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class PlaylistService {
-  private apiUrl = 'http://localhost:3000/api'; // Base URL del API
+  private apiUrl = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) {}
 
@@ -18,7 +18,7 @@ export class PlaylistService {
     return this.http.get<any>(`${this.apiUrl}/playlists/${id}`);
   }
 
-  addPlaylist(name: string, videos: string[]): Observable<any> {
+  addPlaylist(name: string, videos: any[] = []): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/playlists`, { name, videos });
   }
 

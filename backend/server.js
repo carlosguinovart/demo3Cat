@@ -96,7 +96,7 @@ app.post('/api/playlists', (req, res) => {
   const newPlaylist = {
     id: playlists.length + 1, // Generar un nuevo ID
     name: req.body.name,
-    videos: req.body.videos || [],
+    videos: [], // El campo videos queda vacío por defecto
   };
   playlists.push(newPlaylist);
   res.status(201).json(newPlaylist);

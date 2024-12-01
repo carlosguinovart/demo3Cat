@@ -17,13 +17,8 @@
       placeholder="Nombre de la Playlist"
       [(ngModel)]="newPlaylistName"
     />
-    <textarea
-      placeholder="Videos separados por comas"
-      [(ngModel)]="newPlaylistVideos"
-    ></textarea>
     <button class="add-btn" (click)="addPlaylist()">Agregar</button>
   </div>
-
   <app-playlist-dialog
     *ngIf="isModalOpen"
     [playlist]="selectedPlaylist"
