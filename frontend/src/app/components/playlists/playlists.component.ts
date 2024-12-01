@@ -123,9 +123,6 @@ export class PlaylistComponent implements OnInit {
       });
   }
   
-  
-  
-
   // Cierra el modal al hacer clic fuera del contenido o al pulsar "Cancelar"
 closeDropdownModal(event?: MouseEvent): void {
   if (!event || (event.target as HTMLElement).classList.contains('modal')) {
