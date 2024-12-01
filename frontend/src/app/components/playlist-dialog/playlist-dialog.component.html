@@ -1,1 +1,13 @@
-<p>playlist-dialog works!</p>
+<div *ngIf="isOpen" class="modal">
+  <div class="modal-content">
+    <h2>{{ playlist?.name }}</h2>
+    <ul>
+      <li *ngFor="let video of playlist?.videos">
+        <strong>{{ video.name }}</strong> ({{ video.type }})
+        <p>{{ video.description }}</p>
+        <a [href]="video.link" target="_blank">Ver más</a>
+      </li>
+    </ul>
+    <button class="close-btn" (click)="closeModal()">Cerrar</button>
+  </div>
+</div>

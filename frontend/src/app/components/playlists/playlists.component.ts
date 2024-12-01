@@ -8,7 +8,7 @@ import { PlaylistService } from '../../services/playlist.service';
 })
 export class PlaylistComponent implements OnInit {
   playlists: { id: number; name: string }[] = [];
-  selectedPlaylist: { name: string; videos: string[] } | null = null;
+  selectedPlaylist: { id: number; name: string; videos: any[] } | null = null;
   isModalOpen: boolean = false;
 
   newPlaylistName: string = ''; // Nombre de la nueva lista
@@ -27,13 +27,28 @@ export class PlaylistComponent implements OnInit {
     });
   }
 
-  // Obtener detalles de una playlist por ID
+  // Obtener detalles de una playlist por ID y abrir el modal
   fetchPlaylistDetails(id: number): void {
     this.playlistService.getPlaylistById(id).subscribe((data) => {
       this.selectedPlaylist = data;
-      this.isModalOpen = true;
+      this.isModalOpen = true; // Abrir el modal
     });
   }
+
+  deletePlaylist(id: number): void {
+    if (confirm('¿Estás seguro de que deseas eliminar esta playlist?')) {
+      this.playlistService.deletePlaylist(id).subscribe({
+        next: () => {
+          this.playlists = this.playlists.filter((playlist) => playlist.id !== id);
+          alert('Playlist eliminada correctamente.');
+        },
+        error: () => {
+          alert('Ocurrió un error al intentar eliminar la playlist.');
+        },
+      });
+    }
+  }
+  
 
   // Crear una nueva playlist
   addPlaylist(): void {
@@ -46,11 +61,13 @@ export class PlaylistComponent implements OnInit {
       .map((video) => video.trim())
       .filter((video) => video);
 
-    this.playlistService.addPlaylist(this.newPlaylistName, videos).subscribe((newPlaylist) => {
-      this.playlists.push({ id: newPlaylist.id, name: newPlaylist.name }); // Agregar a la lista visible
-      this.newPlaylistName = ''; // Limpiar los campos
-      this.newPlaylistVideos = '';
-    });
+    this.playlistService
+      .addPlaylist(this.newPlaylistName, videos)
+      .subscribe((newPlaylist) => {
+        this.playlists.push({ id: newPlaylist.id, name: newPlaylist.name }); // Agregar a la lista visible
+        this.newPlaylistName = ''; // Limpiar los campos
+        this.newPlaylistVideos = '';
+      });
   }
 
   // Cerrar el modal
@@ -58,4 +75,7 @@ export class PlaylistComponent implements OnInit {
     this.isModalOpen = false;
     this.selectedPlaylist = null;
   }
+
+  
+
 }

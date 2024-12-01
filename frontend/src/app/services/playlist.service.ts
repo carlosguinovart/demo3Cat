@@ -6,23 +6,25 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class PlaylistService {
-  private apiUrl = 'http://localhost:3000/api/playlists';
+  private apiUrl = 'http://localhost:3000/api/playlists';; // Cambia según tu backend
 
   constructor(private http: HttpClient) {}
 
-  // Obtener todas las playlists
-  getPlaylists(): Observable<any> {
-    return this.http.get(this.apiUrl);
+  getPlaylists(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
   }
 
-  // Obtener detalles de una playlist específica
   getPlaylistById(id: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${id}`);
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 
-  // Crear una nueva playlist
-addPlaylist(name: string, videos: string[]): Observable<any> {
-  return this.http.post(this.apiUrl, { name, videos });
-}
+  addPlaylist(name: string, videos: string[]): Observable<any> {
+    return this.http.post<any>(this.apiUrl, { name, videos });
+  }
+  deletePlaylist(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/playlists/${id}`);
+  }
 
+  
+  
 }

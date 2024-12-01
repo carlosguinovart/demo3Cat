@@ -1,27 +1,24 @@
-<div>
-    <h2>Listas de Reproducción</h2>
-    <!-- Mostrar todas las playlists -->
-    <ul>
-      <li *ngFor="let playlist of playlists">
-        <a href="#" (click)="fetchPlaylistDetails(playlist.id)">{{ playlist.name }}</a>
-      </li>
-    </ul>
-  
-    <!-- Formulario para Crear una Nueva Playlist -->
-    <h3>Crear Nueva Lista</h3>
-    <input [(ngModel)]="newPlaylistName" placeholder="Nombre de la lista" />
-    <input [(ngModel)]="newPlaylistVideos" placeholder="Videos separados por comas" />
-    <button (click)="addPlaylist()">Crear Lista</button>
-  
-    <!-- Modal para Mostrar Detalles de una Playlist -->
-    <div class="modal" [class.show]="isModalOpen">
-      <div class="modal-content">
-        <span class="close" (click)="closeModal()">&times;</span>
-        <h2>{{ selectedPlaylist?.name }}</h2>
-        <ul>
-          <li *ngFor="let video of selectedPlaylist?.videos">{{ video }}</li>
-        </ul>
-      </div>
-    </div>
+<div class="playlists-container">
+  <h2>Playlists</h2>
+  <ul>
+    <li *ngFor="let playlist of playlists" class="playlist-item">
+      {{ playlist.name }}
+      <button class="details-btn" (click)="fetchPlaylistDetails(playlist.id)">Ver detalles</button>
+      <button class="delete-btn" (click)="deletePlaylist(playlist.id)">Eliminar</button>
+    </li>
+  </ul>
+
+  <h3>Agregar Playlist</h3>
+  <div class="add-playlist-form">
+    <input
+      type="text"
+      placeholder="Nombre de la Playlist"
+      [(ngModel)]="newPlaylistName"
+    />
+    <textarea
+      placeholder="Videos separados por comas"
+      [(ngModel)]="newPlaylistVideos"
+    ></textarea>
+    <button class="add-btn" (click)="addPlaylist()">Agregar</button>
   </div>
-  
+</div>
