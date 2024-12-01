@@ -2,9 +2,11 @@
   <h2>Playlists</h2>
   <ul>
     <li *ngFor="let playlist of playlists" class="playlist-item">
-      {{ playlist.name }}
-      <button class="details-btn" (click)="fetchPlaylistDetails(playlist.id)">Ver detalles</button>
-      <button class="delete-btn" (click)="deletePlaylist(playlist.id)">Eliminar</button>
+      <span>{{ playlist.name }}</span>
+      <div class="button-group">
+        <button class="details-btn" (click)="fetchPlaylistDetails(playlist.id)">Ver detalles</button>
+        <button class="delete-btn" (click)="deletePlaylist(playlist.id)">Eliminar</button>
+      </div>
     </li>
   </ul>
 
@@ -21,4 +23,10 @@
     ></textarea>
     <button class="add-btn" (click)="addPlaylist()">Agregar</button>
   </div>
+
+  <app-playlist-dialog
+    *ngIf="isModalOpen"
+    [playlist]="selectedPlaylist"
+    (close)="closeModal()"
+  ></app-playlist-dialog>
 </div>

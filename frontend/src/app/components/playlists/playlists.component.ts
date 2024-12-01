@@ -29,11 +29,18 @@ export class PlaylistComponent implements OnInit {
 
   // Obtener detalles de una playlist por ID y abrir el modal
   fetchPlaylistDetails(id: number): void {
-    this.playlistService.getPlaylistById(id).subscribe((data) => {
-      this.selectedPlaylist = data;
-      this.isModalOpen = true; // Abrir el modal
+    this.playlistService.getPlaylistById(id).subscribe({
+      next: (data) => {
+        this.selectedPlaylist = data; // Almacena los detalles de la playlist seleccionada
+        this.isModalOpen = true; // Abre el modal
+      },
+      error: (err) => {
+        console.error('Error al obtener detalles de la playlist:', err);
+        alert('Ocurrió un error al cargar los detalles de la playlist.');
+      },
     });
   }
+  
 
   deletePlaylist(id: number): void {
     if (confirm('¿Estás seguro de que deseas eliminar esta playlist?')) {
