@@ -100,7 +100,7 @@ let availableContents = [
     name: 'El Doctor Martin',
     type: 'Serie',
     description: 'En plena mudança per marxar cap a Londres, un greu accident ho canviarà tot.',
-    image: api + '/el-dorcot-martin.png',
+    image: api + '/el-doctor-martin.png',
     link: 'https://www.3cat.cat/3cat/el-doctor-martin/'
   },
   {
@@ -224,10 +224,28 @@ app.delete('/api/playlists/:id', (req, res) => {
   }
 });
 
+app.get('/api/available-contents', (req, res) => {
+  res.json(availableContents);
+});
+
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
+
+app.post('/api/playlists/:id/add-content', (req, res) => {
+  const playlistId = parseInt(req.params.id, 10);
+  const content = req.body;
+
+  const playlist = playlists.find((p) => p.id === playlistId);
+  if (playlist) {
+    playlist.videos.push(content); // Añade el contenido a la playlist
+    res.status(200).json({ message: 'Contenido añadido correctamente.', playlist }); // Devuelve la playlist actualizada
+  } else {
+    res.status(404).json({ message: 'Playlist no encontrada.' });
+  }
+});
+
 
 
 

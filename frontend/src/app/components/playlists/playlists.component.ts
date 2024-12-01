@@ -8,15 +8,20 @@ import { PlaylistService } from '../../services/playlist.service';
 })
 export class PlaylistComponent implements OnInit {
   playlists: { id: number; name: string }[] = [];
+  availableContents: any[] = [];
   selectedPlaylist: { id: number; name: string; videos: any[] } | null = null;
   isModalOpen: boolean = false;
 
   newPlaylistName: string = ''; // Nombre de la nueva playlist
+  selectedContent: any = null; // Contenido seleccionado para añadir
+  selectedPlaylistId: number | null = null; // Playlist seleccionada para añadir contenido
+  showPlaylistDropdown: boolean = false; // Muestra el dropdown para seleccionar playlist
 
   constructor(private playlistService: PlaylistService) {}
 
   ngOnInit(): void {
     this.fetchPlaylists();
+    this.fetchAvailableContents();
   }
 
   // Obtener todas las playlists
@@ -26,22 +31,30 @@ export class PlaylistComponent implements OnInit {
     });
   }
 
-  // Obtener detalles de una playlist por ID
-  fetchPlaylistDetails(id: number): void {
-    console.log('ID de la playlist solicitada:', id); // Debug para verificar el ID
-    this.playlistService.getPlaylistById(id).subscribe({
-      next: (data) => {
-        console.log('Detalles de la playlist recibidos:', data); // Debug para verificar los datos
-        this.selectedPlaylist = data; // Guarda los datos recibidos
-        this.isModalOpen = true; // Abre el modal
-      },
-      error: (err) => {
-        console.error('Error al obtener detalles de la playlist:', err);
-        alert('Ocurrió un error al cargar los detalles de la playlist.');
-      },
+  // Obtener contenidos disponibles
+  fetchAvailableContents(): void {
+    this.playlistService.getAvailableContents().subscribe((data) => {
+      this.availableContents = data;
     });
   }
 
+  // Obtener detalles de una playlist por ID
+  fetchPlaylistDetails(id: number): void {
+    console.log('Cargando detalles de la playlist:', id); // Debug
+    this.playlistService.getPlaylistById(id).subscribe({
+      next: (data) => {
+        console.log('Detalles recibidos:', data); // Verifica los datos
+        this.selectedPlaylist = data; // Actualiza los datos de la playlist
+        this.isModalOpen = true; // Abre el modal
+        console.log('Estado de isModalOpen:', this.isModalOpen); // Verifica si se establece en true
+      },
+      error: (err) => {
+        console.error('Error al cargar los detalles:', err);
+      },
+    });
+  }
+  
+  
   // Crear una nueva playlist
   addPlaylist(): void {
     if (!this.newPlaylistName.trim()) {
@@ -51,7 +64,7 @@ export class PlaylistComponent implements OnInit {
 
     this.playlistService.addPlaylist(this.newPlaylistName, []).subscribe((newPlaylist) => {
       this.playlists.push({ id: newPlaylist.id, name: newPlaylist.name });
-      this.newPlaylistName = ''; // Limpiar el campo
+      this.newPlaylistName = ''; // Limpia el campo
     });
   }
 
@@ -76,4 +89,49 @@ export class PlaylistComponent implements OnInit {
       });
     }
   }
+
+  // Añadir contenido a una playlist
+  addToPlaylist(content: any): void {
+    this.selectedContent = content; // Contenido seleccionado
+    this.showPlaylistDropdown = true; // Muestra el dropdown para elegir playlist
+  }
+
+  // Confirmar la adición del contenido a la playlist
+  confirmAddToPlaylist(): void {
+    if (!this.selectedPlaylistId) {
+      alert('Por favor, selecciona una playlist.');
+      return;
+    }
+  
+    this.playlistService
+      .addContentToPlaylist(this.selectedPlaylistId, this.selectedContent)
+      .subscribe({
+        next: () => {
+          alert('Contenido añadido correctamente a la playlist.');
+          this.selectedContent = null;
+          this.showPlaylistDropdown = false;
+  
+          // Validar que selectedPlaylistId no es null antes de llamar a fetchPlaylistDetails
+          if (this.selectedPlaylistId !== null) {
+            this.fetchPlaylistDetails(this.selectedPlaylistId);
+          }
+        },
+        error: (err) => {
+          console.error('Error al añadir contenido a la playlist:', err);
+          alert('Ocurrió un error al añadir el contenido.');
+        },
+      });
+  }
+  
+  
+  
+
+  // Cierra el modal al hacer clic fuera del contenido o al pulsar "Cancelar"
+closeDropdownModal(event?: MouseEvent): void {
+  if (!event || (event.target as HTMLElement).classList.contains('modal')) {
+    this.showPlaylistDropdown = false;
+    this.selectedPlaylistId = null;
+  }
+}
+
 }

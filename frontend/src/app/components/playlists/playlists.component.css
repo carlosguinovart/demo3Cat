@@ -71,3 +71,129 @@ ul {
   background-color: #c82333;
 }
 
+.content-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.content-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.content-card img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.content-card h4 {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.content-card p {
+  font-size: 14px;
+  color: #555;
+}
+
+.content-card button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.content-card button:hover {
+  background-color: #0056b3;
+}
+
+.playlist-dropdown {
+  margin-top: 20px;
+  padding: 10px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.playlist-dropdown select {
+  margin-right: 10px;
+  padding: 5px;
+}
+
+.playlist-dropdown button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.playlist-dropdown button:hover {
+  background-color: #218838;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h4 {
+  margin-bottom: 15px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.modal-actions button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-actions button:hover {
+  background-color: #0056b3;
+}
+
+.modal-actions button:last-child {
+  background-color: #dc3545;
+}
+
+.modal-actions button:last-child:hover {
+  background-color: #c82333;
+}

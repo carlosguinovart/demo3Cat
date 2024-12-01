@@ -25,4 +25,13 @@ export class PlaylistService {
   deletePlaylist(id: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/playlists/${id}`);
   }
+  getAvailableContents(): Observable<any[]> {
+    return this.http.get<any[]>('http://localhost:3000/api/available-contents');
+  }
+  
+  addContentToPlaylist(playlistId: number, content: any): Observable<any> {
+    return this.http.post<any>(`http://localhost:3000/api/playlists/${playlistId}/add-content`, content);
+  }
+
+  
 }
