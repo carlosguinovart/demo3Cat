@@ -18,25 +18,20 @@ let playlists = [
       "name": "lista_32",
       "videos": [
         {
-          "id": 1,
-          "name": "Natura sàvia",
-          "type": "Documental",
-          "description": "Peyu, Quimi Portet y Albert Pla exploran la fauna doméstica con humor y rigor científico.",
-          "link": "https://www.3cat.cat/natura-savia"
+          id: 1,
+          name: 'Natura sàvia',
+          type: 'Documental',
+          description: 'Peyu, Quimi Portet y Albert Pla exploran la fauna doméstica con humor y rigor científico.',
+          image: api + '/natura-savia.png',
+          link: 'https://www.3cat.cat/natura-savia'
         },
         {
-          "id": 2,
-          "name": "Col·lapse",
-          "type": "Programa de entretenimiento",
-          "description": "Entrevistas profundas y divertidas con personajes nacionales e internacionales.",
-          "link": "https://www.3cat.cat/collapse"
-        },
-        {
-          "id": 3,
-          "name": "Esto no es Suecia",
-          "type": "Serie de comedia",
-          "description": "Una mirada crítica y humorística sobre la crianza y las parejas jóvenes de hoy en día.",
-          "link": "https://www.3cat.cat/esto-no-es-suecia"
+          id: 11,
+          name: 'La Travessa',
+          type: 'Entreteniment',
+          description: 'El reality d`aventures més exigent de Catalunya, presentat per Laura Escanes.',
+          image: api + '/la-travessa.png',
+          link: 'https://www.3cat.cat/3cat/la-travessa/'
         }
       ]
     },
@@ -78,7 +73,7 @@ let playlists = [
         }
       ]
     },
-  { id: 3, name: 'Jazz', videos: ['Video5', 'Video6'] },
+  { id: 3, name: 'Llista buida', videos: [] },
 ];
 
 
@@ -158,8 +153,8 @@ let availableContents = [
   },
   {
     id: 10,
-    name: 'L`amiga genial',
-    type: 'Serie',
+    name: 'T`estimo tal com ets',
+    type: 'Pel.licula',
     description: 'El Jay és l`ovella negra d`una família rica. En llibertat provisional i amb l`aigua al coll, aprofita el casament del seu germà per recuperar el contacte amb la família, aconseguir diners per eixugar deutes i netejar la seva imatge. Per això, decideix anar-hi amb la Daisy, una pacient de l`hospital psiquiàtric on treballa que ha viscut sempre aïllada del món.',
     image: api + '/testimo-tal-com-ets.png',
     link: 'https://www.3cat.cat/3cat/testimo-tal-com-ets/video/6194114/'
