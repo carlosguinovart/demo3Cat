@@ -2,9 +2,10 @@
   <!-- Lista de playlists -->
   <h2>Playlists</h2>
   <ul>
-    <li *ngFor="let playlist of playlists" class="playlist-item">
-      {{ playlist.name }}
-      <div class="button-group">
+    <li  *ngFor="let playlist of playlists" class="playlist-item" (click)="fetchPlaylistDetails(playlist.id)">
+      {{ playlist.name }} 
+      <div class="button-group" >
+        <!--<button class="details-btn" (click)="fetchPlaylistDetails(playlist.id)">Veure més</button> -->
         <button class="details-btn" (click)="fetchPlaylistDetails(playlist.id)">Veure més</button>
         <button class="delete-btn" (click)="deletePlaylist(playlist.id)">Eliminar</button>
       </div>

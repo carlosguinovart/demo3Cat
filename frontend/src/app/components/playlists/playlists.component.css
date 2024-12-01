@@ -197,3 +197,14 @@ ul {
 .modal-actions button:last-child:hover {
   background-color: #c82333;
 }
+li {
+  background-color: #f9f9f9; /* Color de fondo */
+  padding: 10px;
+  border-radius: 4px; /* Bordes redondeados */
+  margin-bottom: 10px; /* Espaciado entre elementos */
+}
+
+li:hover {
+  background-color: #007bff; /* Color de fondo al pasar el ratón */
+  color: #fff; /* Color del texto al pasar el ratón */
+}
